@@ -4,8 +4,13 @@ import { connect } from 'react-redux';
 // ComposedComponent is component want to wrap by this higher component
 export default function(ComposedComponent) {
 	class Authentication extends Component {
+
+		static contextType = {
+			router: React.PropTypes.object
+		}
+
 		render() {
-			console.log(this.props.authenticated);
+			console.log(this.context);
 			return <ComposedComponent {...this.props} />
 		}
 	}
