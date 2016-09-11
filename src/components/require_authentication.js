@@ -9,8 +9,17 @@ export default function(ComposedComponent) {
 			router: React.PropTypes.object
 		}
 
+		// Call before rendering state not update yet
 		componentWillMount() {
 			if(!this.props.authenticated) {
+				this.context.router.push('/');
+			}
+		}
+
+		// Call before rendering but with new set of new props (nextProps)
+		// state update
+		componentWillUpdate(nextProps) {
+			if(!nextProps.authenticated) {
 				this.context.router.push('/');
 			}
 		}
